@@ -1,20 +1,21 @@
 import random as rand
 
-class State():
+class MDP():
     def __init__(self):
-        States = [
-            ["RU8p", 0.0],
-            ["TU10p", 0.0],
-            ["RU10p", 0.0],
-            ["RD10p", 0.0],
-            ["RU8a", 0.0],
-            ["RD8a", 0.0],
-            ["TU10a", 0.0],
-            ["RU10a", 0.0],
-            ["RD10a", 0.0],
-            ["TD10a", 0.0],
-            ["11am", 0.0]
-        ]
+        #Python Dictionary
+        States = {
+            "RU8p": 0,
+            "TU10p": 0,
+            "RU10p": 0,
+            "RD10p": 0,
+            "RU8a": 0,
+            "RD8a": 0,
+            "TU10a": 0,
+            "RU10a": 0,
+            "RD10a": 0,
+            "TD10a": 0,
+            "DONE": 0
+        }
         Actions = [
             ["P"],
             ["R"],
@@ -71,6 +72,33 @@ class State():
             elif (a == "P") :
                 return "TD10a"
                     
-        return "11am"
+        return "DONE"
 
-
+    def get_num_decisions(state):
+        two_actions = {"TU10p","RD8a","RD10p"}
+        if state in two_actions:
+            return 2
+        else:
+            return 3
+    
+    def generate_reward(state, action):
+        
+        if (action == "P"):
+            return 2
+        elif (action == "R"): 
+            return 0
+        else: #for action s 
+            return -1
+        
+        
+        
+        if (state == "TU10a"): 
+            return -1
+        elif (state == "RU10a"): 
+            return 0
+        elif (state == "RD10a"): 
+            return 4
+        elif (state == "TD10a"):
+            return 3
+        
+        
