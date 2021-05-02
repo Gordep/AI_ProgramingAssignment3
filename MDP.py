@@ -82,16 +82,7 @@ class MDP():
             return 3
     
     def generate_reward(self, state, action):
-        
-        if (action is "P"):
-            return 2
-        elif (action is "R"): 
-            return 0
-        else: #for action s 
-            return -1
-        
-        
-        
+                
         if (state is "TU10a"): 
             return -1
         elif (state is "RU10a"): 
@@ -100,6 +91,13 @@ class MDP():
             return 4
         elif (state is "TD10a"):
             return 3   
+        
+        if (action is "P"):
+            return 2
+        elif (action is "R"): 
+            return 0
+        else: #for action s 
+            return -1
         
     def get_States(self):
         return self.States
