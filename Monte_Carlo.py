@@ -21,16 +21,22 @@ class Monte_Carlo():
             if(starting_state is "DONE"):
                 break
             
+            #Obtain action to be done
             action_todo = self.action_decision(starting_state)
             
+            #Add that action to the saved list
             saved_actions.append(action_todo)
             
+            #Generate reward to be used // Take in starting(current state) and action to be done
             reward_val = self.MDP.generate_reward(starting_state,action_todo)
             
+            #add reward_val obtained to reward to obtain total reward of the episode  
             reward = reward + reward_val
             
+            #add reward generated to reward list 
             saved_rewards.append(reward_val)
             
+            #use  V(s)<-V(s)+alpha[R-V(s)] to update the rule on the dictionary state
             self.update_rule(action_todo, reward_val, starting_state)
             
             new_state = self.MDP.simulate(action_todo, starting_state)
@@ -47,7 +53,7 @@ class Monte_Carlo():
         print("#############")    
             
     
-    # V(s)<-V(s)+alpha[R-V(s)]g
+    # V(s)<-V(s)+alpha[R-V(s)]
     def update_rule(self, action, reward, state):
         updated_value = self.MDP.States.get(state) + self.alpha *(reward - self.MDP.States.get(state))
         self.MDP.States.update({state: updated_value})
