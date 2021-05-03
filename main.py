@@ -1,6 +1,6 @@
 import Monte_Carlo
 import Value_Iteration
-
+import Q_Learning
 
 class main():
     def __init__(self):
@@ -28,7 +28,8 @@ class main():
             val_iter.simulate()
 
         elif inputVal == "3":
-            pass
+            q_l = Q_Learning.Q_Learning()
+            q_l.simulate()
         
         else:
             print("invalid input")
