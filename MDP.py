@@ -17,9 +17,14 @@ class MDP():
             "DONE": 0
         }
         self.Actions = [
-            ["P"],
-            ["R"],
-            ["S"]
+            "P",
+            "R",
+            "S"
+        ]
+        
+        self.Actions_Two = [
+            "P",
+            "R"
         ]
 
     def simulate(self, action, state):
@@ -80,6 +85,14 @@ class MDP():
             return 2
         else:
             return 3
+    
+    def get_action(self,state):
+        two_actions = {"TU10p","RD8a","RD10p"}
+        
+        if (state in two_actions):
+            return self.Actions_Two
+        else:
+            return self.Actions
     
     def generate_reward(self, state, action):
                 
